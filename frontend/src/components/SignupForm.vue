@@ -1,11 +1,16 @@
 <template>
   <div>
-    <form action="" @submit.prevent="handleSignup">
-      <nav>
+    <form action="" @submit.prevent="handleSignup()">
+      <img
+        class="logo"
+        src="../assets\groupomania-logo-site-1.jpg"
+        alt="logo-signup"
+      />
+      <nav id="nav">
         <router-link to="/"> Se connecter</router-link> |
-        <router-link to="/signup" class="active"> S'inscire </router-link>
+        <router-link to="/signup" class="active"> S'inscrire </router-link>
       </nav>
-      <label for="email">Email</label>
+      <label class="label" for="email">Email</label>
       <input
         type="email"
         id="email"
@@ -15,13 +20,13 @@
       <br />
       <div class="email error">{{ message }}</div>
 
-      <label for="firstName">Prénom</label>
+      <label class="label" for="firstName">Prénom</label>
       <input type="text" id="firstName" minlength="3" required /> <br />
 
-      <label for="lastName">Nom</label>
+      <label class="label" for="lastName">Nom</label>
       <input type="text" id="lastName" minlength="5" required /> <br />
 
-      <label for="password">Mot de passe</label>
+      <label class="label" for="password">Mot de passe</label>
       <input
         type="password"
         id="password"
@@ -33,17 +38,19 @@
         minuscule
       </p>
 
-      <label for="control-password">Confirmer mot de passe</label>
+      <label class="label" for="control-password">Confirmer mot de passe</label>
       <input type="password" id="control-password" required /> <br />
       <div class="password-confirm error"></div>
 
-      <input type="checkbox" id="terms" />
-      <label for="terms" type="checkbox"
-        >J'accepte les <a href="">{{ url }}</a></label
-      >
+      <div class="terms-center">
+        <input type="checkbox" id="terms" class="terms" />
+        <label for="terms" type="checkbox"
+          >J'accepte les <a href="">{{ url }}</a></label
+        >
+      </div>
       <div class="terms error"></div>
 
-      <button type="submit" id="signup-btn">S'inscire</button>
+      <button type="submit" id="signup-btn">S'inscrire</button>
 
       <div class="form error">{{ messageForm }}</div>
     </form>
@@ -121,4 +128,85 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style scoped lang="scss">
+form {
+  border: 1px solid red;
+  width: 80%;
+  margin: auto;
+  border-radius: 30px;
+  padding: 0 0 10% 0;
+
+  .logo {
+    padding-top: 40px;
+  }
+  .label {
+    width: 150px;
+    display: inline-block;
+  }
+  input {
+    margin: 10px 0px 15px;
+    height: 30px;
+    border-radius: 10px;
+    border: 3px solid #555;
+    background: transparent;
+    caret-color: red;
+    text-align: center;
+    &:focus {
+      outline: none;
+    }
+    &:valid {
+      border: none;
+      border-bottom: 2px solid #555;
+    }
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: black !important;
+  }
+  .terms {
+    margin-right: 15px;
+  }
+  p {
+    font-size: 13px;
+    margin-top: 0px;
+  }
+  .error {
+    color: red;
+    font-weight: bold;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 2px solid rgba(255, 0, 0, 0.644);
+    background-color: #e44d666b;
+    font-weight: bold;
+
+    &:hover {
+      transition: all 0.5s ease;
+      transform: scale(1.2);
+      cursor: pointer;
+      color: white;
+      background-color: #e44d66e1;
+    }
+    &:active {
+      outline: none;
+    }
+  }
+  .terms-center {
+    display: flex;
+    width: 300px;
+    margin: auto;
+    align-items: center;
+  }
+}
+</style>

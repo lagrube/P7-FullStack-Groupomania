@@ -7,6 +7,8 @@
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  max-width: 1200px;
+  margin: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -18,10 +20,12 @@
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #381f1f7a;
+    text-decoration: none;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #e44d66;
+      border-bottom: 2px solid;
     }
   }
 }

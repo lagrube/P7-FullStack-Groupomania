@@ -56,7 +56,8 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
-  const sqlFindUser = "SELECT id, password FROM users WHERE email = ?";
+  const sqlFindUser =
+    "SELECT id, nom, prenom, admin, password FROM users WHERE email = ?";
 
   //recherche de l'utilisateur dans la base de données
   mysql.query(sqlFindUser, [email], (err, result, field) => {
@@ -72,6 +73,10 @@ exports.login = (req, res, next) => {
               });
             } else {
               res.status(200).json({
+                userId: result[0].id,
+                nom: result[0].nom,
+                prenom: result[0].prenom,
+                admin: result[0].admin,
                 token: jwt.sign(
                   { userId: result[0].id },
                   process.env.JWT_TOKEN,
