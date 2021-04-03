@@ -31,12 +31,16 @@ exports.signup = (req, res, next) => {
           `SELECT email FROM users WHERE email = "${email}"`,
           (err, result) => {
             if (result.length > 0)
-              res.status(200).json({ errorEmail: "Email déja utilisé" });
+              res.status(401).json({
+                errorEmail: "Email déja utilisé",
+              });
             else {
               mysql.query(sqlSignup, values, (err, result, field) => {
                 err
                   ? res.status(500).json(err)
-                  : res.status(201).json({ message: "Utilisateur créé !" });
+                  : res.status(201).json({
+                      message: "Utilisateur créé !",
+                    });
               });
             }
           },
@@ -44,7 +48,7 @@ exports.signup = (req, res, next) => {
       })
       .catch((err) => res.status(500).json({ err }));
   } else {
-    res.status(200).json({ errorForm: "Formulaire mal rempli!" });
+    res.status(400).json({ errorForm: "Formulaire mal rempli!" });
   }
 };
 
@@ -63,7 +67,9 @@ exports.login = (req, res, next) => {
           .then((valid) => {
             //Si le mot de passe est incorrect
             if (!valid) {
-              res.status(401).json({ message: "Mot de passe incorrect !" });
+              res.status(401).json({
+                message: "Mot de passe incorrect !",
+              });
             } else {
               res.status(200).json({
                 token: jwt.sign(
@@ -140,7 +146,9 @@ exports.modify = (req, res, next) => {
                 (err, result, field) => {
                   err
                     ? res.status(500).json({ err })
-                    : res.status(200).json({ message: "Image modifié !" });
+                    : res.status(200).json({
+                        message: "Image modifié !",
+                      });
                 },
               );
             })
@@ -174,7 +182,9 @@ exports.modify = (req, res, next) => {
               if (result.affectedRows == 0) {
                 return res.status(400).json({ message: "Changement échoué !" });
               }
-              res.status(200).json({ message: "Utilisateur modifé !" });
+              res.status(200).json({
+                message: "Utilisateur modifé !",
+              });
             },
           );
         })

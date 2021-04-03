@@ -10,27 +10,28 @@ const expressSanitizer = require("express-sanitizer");
 const userRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 
-// HELMET
-app.use(helmet()); // Protège l'app en paramétrant des Headers (notamment contre les failles XSS)
-
 // PARAMETRAGE DES HEADERS
 app.use((req, res, next) => {
   // Evite les erreurs CORS
   // on indique que les ressources peuvent être partagées depuis n'importe quelle origine
   res.setHeader("Access-Control-Allow-Origin", "*");
-  // on indique les entêtes qui seront utilisées après la pré-vérification cross-origin afin de donner l'autorisation
-  res.header(
+  res.setHeader(
     "Access-Control-Allow-Headers",
-    "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Set-Cookie",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
   );
-  res.header("Access-Control-Expose-Headers", "Set-Cookie");
-  res.header("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+  );
   next();
 });
 
 // BODYPARSER
 app.use(bodyParser.json()); // Rend le corps de la requête exploitable facilement
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// HELMET
+app.use(helmet()); // Protège l'app en paramétrant des Headers (notamment contre les failles XSS)
 
 // SANITIZER
 app.use(expressSanitizer()); // Protège contre les failles XSS
