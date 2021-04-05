@@ -80,22 +80,28 @@ form {
   margin: auto;
   border-radius: 30px;
   padding: 0 0 10% 0;
+  text-align: center;
 
   .logo {
     padding-top: 40px;
+    @media all and (max-width: 600px) {
+      width: 60%;
+    }
   }
   label {
     width: 150px;
     display: inline-block;
   }
   input {
-    margin: 10px 0px 15px;
+    margin: 10px 10px 15px;
     height: 30px;
     border-radius: 10px;
     border: 3px solid #555;
     background: transparent;
     caret-color: red;
     text-align: center;
+    font-family: inherit;
+    font-size: 16px;
     &:focus {
       outline: none;
     }

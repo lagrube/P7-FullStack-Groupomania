@@ -6,12 +6,11 @@
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: cursive;
   max-width: 1200px;
   margin: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
@@ -29,4 +28,16 @@
     }
   }
 }
+
+@mixin smartphone {
+  @media all and (max-width: 600px) {
+    @content;
+  }
+}
+
+// @mixin tablette-pc {
+//   @media screen and (min-width: 600px) {
+//     @content;
+//   }
+// }
 </style>

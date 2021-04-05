@@ -44,7 +44,7 @@
 
       <div class="terms-center">
         <input type="checkbox" id="terms" class="terms" />
-        <label for="terms" type="checkbox"
+        <label for="terms" type="checkbox" class="terms"
           >J'accepte les <a href="">{{ url }}</a></label
         >
       </div>
@@ -135,22 +135,28 @@ form {
   margin: auto;
   border-radius: 30px;
   padding: 0 0 10% 0;
+  text-align: center;
 
   .logo {
     padding-top: 40px;
+    @media all and (max-width: 600px) {
+      width: 60%;
+    }
   }
   .label {
     width: 150px;
     display: inline-block;
   }
   input {
-    margin: 10px 0px 15px;
+    margin: 10px 10px 15px;
     height: 30px;
     border-radius: 10px;
     border: 3px solid #555;
     background: transparent;
     caret-color: red;
     text-align: center;
+    font-family: inherit;
+    font-size: 16px;
     &:focus {
       outline: none;
     }
@@ -173,11 +179,13 @@ form {
     -webkit-text-fill-color: black !important;
   }
   .terms {
-    margin-right: 15px;
+    @media all and (max-width: 400px) {
+      display: none;
+    }
   }
   p {
     font-size: 13px;
-    margin-top: 0px;
+    margin: 0 10px 0;
   }
   .error {
     color: red;

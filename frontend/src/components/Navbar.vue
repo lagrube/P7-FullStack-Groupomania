@@ -7,6 +7,7 @@
           src="@/assets/groupomania-navbar.png"
           alt="Groupomania logo"
         />
+        <div class="home">Accueil</div>
       </router-link>
       <ul>
         <li>
@@ -49,17 +50,28 @@ export default {
     border-bottom: none;
     .logo-groupomania {
       width: 200px;
+      @media all and (max-width: 600px) {
+        display: none;
+      }
+    }
+    .home {
+      @media all and (min-width: 601px) {
+        display: none;
+      }
     }
   }
 
   ul {
     display: flex;
-    flex: 1;
+    @media all and (min-width: 700px) {
+      flex: 1;
+    }
     justify-content: space-around;
     align-items: center;
     list-style-type: none;
     li {
       padding: 10px 0;
+      margin-right: 20px;
       .logo {
         width: 25px;
         cursor: pointer;
