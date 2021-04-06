@@ -7,31 +7,42 @@
       </div>
       <div class="post-image">{{ post.image }}</div>
       <div class="post-content">{{ post.message }}</div>
-      <div class="modify-btn" v-if="user.userId === post.user_id">
-        Modifier
-      </div>
+      <router-link :to="{ name: 'Post', params: { id: post.id } }">
+        <div class="modify-btn" v-if="user.userId === post.user_id">
+          Modifier
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
+
 export default {
   name: "Posts",
+
   data() {
     return {
       posts: [],
     };
   },
-  mounted() {
+
+  computed: {
+    ...mapState(["url"]),
+  },
+
+  created() {
     this.user = JSON.parse(localStorage.user);
     this.getAllPost();
   },
+
   methods: {
     getAllPost() {
       const token = JSON.parse(localStorage.user).token;
       axios
-        .get("http://localhost:5000/api/post", {
+        .get(`${this.url}/post`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -74,13 +85,10 @@ export default {
       float: right;
       position: relative;
       right: 5%;
-      color: #382528;
-      // border: 1px solid;
-      border-radius: 15px;
-      padding: 3px 30px;
-      &:hover {
-        background-color: rgba(245, 222, 179, 0.39);
-      }
+      background-color: #201d1d;
+      color: white;
+      border-radius: 10px;
+      padding: 3px 10px;
     }
   }
 }

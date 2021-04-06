@@ -50,6 +50,16 @@ exports.getOnePost = (req, res, next) => {
   );
 };
 
+// MIDDLEWARE PUT ONE POST pour modifier un message
+exports.modifyOnePost = (req, res, next) => {
+  mysql.query(
+    `UPDATE posts SET message = '${req.body.message}', lien_url= ${req.body.lien_url} WHERE posts.id = ${req.params.id}`,
+    (err, result, field) => {
+      err ? res.status(400).json({ err }) : res.status(200).json(result);
+    },
+  );
+};
+
 // MIDDLEWARE DELETE POST pour supprimer les messages
 exports.deletePost = (req, res, next) => {
   mysql.query(

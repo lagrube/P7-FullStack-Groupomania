@@ -18,21 +18,28 @@
       <br />
       <div class="error">{{ message }}</div>
       <br />
-      <button type="submit" id="login-btn">Se connecter</button>
+      <button type="submit" id="login-btn">Connexion</button>
     </form>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "Connection",
+
   data() {
     return {
       message: "",
     };
   },
+
+  computed: {
+    ...mapState(["url"]),
+  },
+
   methods: {
     handleLogin() {
       const email = document.getElementById("email").value;
@@ -45,7 +52,7 @@ export default {
       } else {
         axios
           .post(
-            "http://localhost:5000/api/user/login",
+            `${this.url}/user/login`,
             {
               email,
               password,
@@ -127,8 +134,8 @@ form {
     margin-top: 20px;
     padding: 10px;
     border-radius: 25px;
-    border: 2px solid rgba(255, 0, 0, 0.644);
-    background-color: #e44d666b;
+    border: none;
+    background-color: #e44d6610;
     font-weight: bold;
 
     &:hover {
@@ -136,11 +143,16 @@ form {
       transform: scale(1.2);
       cursor: pointer;
       color: white;
-      background-color: #e44d66e1;
+      border-color: rgb(19, 12, 12);
+      background-color: #141111;
     }
     &:active {
       outline: none;
     }
+  }
+  .error {
+    color: red;
+    font-weight: bold;
   }
 }
 </style>

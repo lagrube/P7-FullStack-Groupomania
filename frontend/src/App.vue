@@ -7,6 +7,7 @@
 <style lang="scss">
 #app {
   font-family: cursive;
+  font-size: 15px;
   max-width: 1200px;
   margin: auto;
   -webkit-font-smoothing: antialiased;
@@ -23,7 +24,7 @@
     text-decoration: none;
 
     &.router-link-exact-active {
-      color: #e44d66;
+      color: rgb(19, 12, 12);
       border-bottom: 2px solid;
     }
   }
@@ -34,10 +35,4 @@
     @content;
   }
 }
-
-// @mixin tablette-pc {
-//   @media screen and (min-width: 600px) {
-//     @content;
-//   }
-// }
 </style>

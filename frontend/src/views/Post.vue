@@ -1,35 +1,30 @@
 <template>
-  <div class="home">
+  <div class="post">
     <Connection v-if="!connected" />
+
     <Navbar v-if="connected" />
-    <CreatePost v-if="connected" />
-    <Posts v-if="connected" />
+    <OnePost v-if="connected" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import Connection from "../components/Connection.vue";
 import Navbar from "../components/Navbar.vue";
-import Posts from "../components/Posts.vue";
-import CreatePost from "../components/CreatePost.vue";
+import OnePost from "../components/OnePost.vue";
 
 export default {
-  name: "Home",
+  name: "Post",
+
   components: {
     Connection,
     Navbar,
-    Posts,
-    CreatePost,
+    OnePost,
   },
+
   data() {
     return {
       connected: true,
     };
-  },
-
-  created() {
-    this.checkConnected();
   },
 
   methods: {
@@ -42,6 +37,10 @@ export default {
         console.log("Utilisateur non connecté!");
       }
     },
+  },
+
+  created() {
+    this.checkConnected();
   },
 };
 </script>
