@@ -77,7 +77,7 @@ exports.deletePost = (req, res, next) => {
 // MIDDLEWARE GET ALL USER POSTS pour récupérer tout les post d'un seul utilisateur
 exports.getUserPosts = (req, res, next) => {
   mysql.query(
-    `SELECT users.nom, users.prenom, posts.id, posts.user_id, posts.message, posts.date AS date FROM users INNER JOIN posts ON users.id = ${req.params.id} ORDER BY date DESC`,
+    `SELECT * FROM posts WHERE posts.user_id = ${req.params.id}`,
     (err, result, field) => {
       err
         ? res.status(400).json({ err })

@@ -28,10 +28,16 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Profil.vue"),
   },
   {
-    path: "/post/:id",
+    path: "/post",
     name: "Post",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Post.vue"),
+  },
+  {
+    path: "/user",
+    name: "User",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/User.vue"),
   },
 ];
 

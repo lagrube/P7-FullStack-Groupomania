@@ -1,6 +1,8 @@
 <template>
   <div class="signup">
-    <SignupForm />
+    <main>
+      <SignupForm />
+    </main>
   </div>
 </template>
 

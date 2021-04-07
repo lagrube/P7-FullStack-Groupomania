@@ -12,7 +12,7 @@ const multer = require("../middleware/multer"); // Permet d'envoyer un fichier d
 // ROUTES posts
 router.get("/", auth, postCtrl.getAllPosts);
 router.get("/:id", auth, postCtrl.getOnePost);
-router.get("/user:id/posts", auth, postCtrl.getUserPosts);
+router.get("/user/:id/posts", auth, postCtrl.getUserPosts);
 router.put("/:id", auth, multer, postCtrl.modifyOnePost);
 router.post("/", auth, multer, postCtrl.createPost);
 router.delete("/:id", auth, postCtrl.deletePost);

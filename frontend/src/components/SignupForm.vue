@@ -95,7 +95,7 @@ export default {
       } else {
         axios
           .post(
-            `${this.url}/user/signup`,
+            `http://localhost:5000/api/user/signup`,
             {
               email,
               password,

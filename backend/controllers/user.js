@@ -87,14 +87,14 @@ exports.login = (req, res, next) => {
               });
             }
           })
-          .catch((error) => res.status(500).json({ error }));
+          .catch((err) => res.status(500).json({ err }));
   });
 };
 
 // MIDDLEWARE PROFIL
 exports.profil = (req, res, next) => {
   mysql.query(
-    `SELECT prenom, nom, bio, image FROM users WHERE id = ${req.params.id}`,
+    `SELECT id, prenom, nom, bio, image FROM users WHERE id = ${req.params.id}`,
     (err, result, field) => {
       err
         ? res.status(401).json({
@@ -119,7 +119,6 @@ exports.delete = (req, res, next) => {
 
 // MIDDLEWARE MODIFY
 exports.modify = (req, res, next) => {
-  const email = req.body.email;
   const prenom = req.body.prenom;
   const nom = req.body.nom;
   const bio = req.body.bio;
@@ -194,12 +193,12 @@ exports.modify = (req, res, next) => {
           );
         })
         .catch((err) => res.status(500).json({ err }));
-    } else {
-      console.log("dans else !mdp");
+    } else if (prenom || nom) {
+      console.log("prenom ou nom présent");
       // Si le mdp reste le même
-      values = [email, prenom, nom, bio];
+      values = [prenom, nom, bio];
       mysql.query(
-        `UPDATE users SET email=?, prenom=?, nom=?, bio=? WHERE id = ${req.params.id}`,
+        `UPDATE users SET prenom=?, nom=?, bio=? WHERE id = ${req.params.id}`,
         values,
         function (err, result) {
           if (err) {

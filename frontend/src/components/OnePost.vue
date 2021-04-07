@@ -3,7 +3,7 @@
     <div class="form-wrapper">
       <span class="form-close" @click="Cancel()">X</span>
       <form class="newPost-form" @submit.prevent="">
-        <label for="newPost-content">Contenu</label>
+        <label class="titre" for="newPost-content">Contenu</label>
         <textarea
           id="newPost-content"
           placeholder="Modifiez votre message..."
@@ -44,6 +44,7 @@ export default {
 
   mounted() {
     this.getOnePost();
+    this.refreshPage();
   },
 
   methods: {
@@ -63,6 +64,15 @@ export default {
           console.log(this.post);
           console.log(this.post.message);
         });
+    },
+
+    refreshPage() {
+      const userId = this.$route.params.id;
+      if (userId === undefined) {
+        return (window.location = "/");
+      } else {
+        return;
+      }
     },
 
     Cancel() {
@@ -145,15 +155,7 @@ export default {
   flex-direction: column;
   text-align: left;
 }
-form input {
-  font-size: 1.05rem;
-  padding: 10px;
-  margin-bottom: 15px;
-  text-align: center;
-  text-align: left;
-  margin-bottom: 30px;
-}
-form label {
+.titre {
   color: red;
   font-weight: bold;
   font-size: 1.3rem;

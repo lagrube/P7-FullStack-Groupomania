@@ -6,6 +6,7 @@
     <transition name="fade">
       <div class="overlay" v-if="visible">
         <div class="form-wrapper">
+          <h2 class="center">Créez votre post ici :</h2>
           <span class="form-close" @click="visible = false">X</span>
           <form class="newPost-form" @submit.prevent="sendNewPost()">
             <label for="newPost-content">Contenu</label>
@@ -80,6 +81,9 @@ export default {
   &:hover {
     transform: scale(1.02);
   }
+}
+.center {
+  text-align: center;
 }
 .overlay {
   position: fixed;

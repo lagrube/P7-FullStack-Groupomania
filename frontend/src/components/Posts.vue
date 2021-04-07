@@ -62,7 +62,8 @@ export default {
   margin: auto;
   .post {
     width: 95%;
-    margin: 50px auto;
+    margin: 20px 0px 0px;
+    margin: auto;
     // border: 1px solid;
     padding: 50px 0;
     overflow: hidden;
@@ -70,15 +71,16 @@ export default {
       margin-bottom: 5px;
     }
     .post-date {
-      margin-bottom: 30px;
       font-size: 12px;
     }
-    .post-content,
     .post-image {
       text-align: center;
     }
-    .post-conten {
+    .post-content {
       margin-bottom: 30px;
+      border-top: 1px solid red;
+      padding-top: 40px;
+      text-align: center;
     }
     .modify-btn {
       cursor: pointer;

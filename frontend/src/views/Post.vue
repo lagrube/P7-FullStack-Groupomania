@@ -1,9 +1,14 @@
 <template>
   <div class="post">
-    <Connection v-if="!connected" />
+    <header>
+      <Navbar v-if="connected" />
+    </header>
+    <main>
+      <Connection v-if="!connected" />
 
-    <Navbar v-if="connected" />
-    <OnePost v-if="connected" />
+      <h2 class="center">Modification de votre post:</h2>
+      <OnePost v-if="connected" />
+    </main>
   </div>
 </template>
 
@@ -44,3 +49,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.center {
+  text-align: center;
+  margin: 50px;
+}
+</style>
