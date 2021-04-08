@@ -162,6 +162,7 @@ export default {
   margin-bottom: 10px;
 }
 #newPost-content {
+  font-size: 20px;
   height: 200px;
   width: calc(100% - 20px);
   padding: 10px;

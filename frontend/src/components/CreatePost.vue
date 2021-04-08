@@ -1,14 +1,16 @@
 <template>
   <div class="newPost">
-    <div class="newPost-create-btn" @click="visible = true">
+    <h2 class="newPost-create-btn" @click="visible = true">
       Ajouter un nouveau post
-    </div>
+    </h2>
     <transition name="fade">
       <div class="overlay" v-if="visible">
         <div class="form-wrapper">
           <h2 class="center">Créez votre post ici :</h2>
           <span class="form-close" @click="visible = false">X</span>
           <form class="newPost-form" @submit.prevent="sendNewPost()">
+            <label for="lien-url">Lien URL</label>
+            <input type="text" id="lien-url" />
             <label for="newPost-content">Contenu</label>
             <textarea
               id="newPost-content"
@@ -27,22 +29,26 @@ import axios from "axios";
 
 export default {
   name: "NewPost",
+
   data() {
     return {
       visible: false,
     };
   },
+
   methods: {
     sendNewPost() {
       const token = JSON.parse(localStorage.user).token;
       //   const user = JSON.parse(localStorage.user);
       const userId = JSON.parse(localStorage.user).userId;
       const message = document.getElementById("newPost-content").value;
+      const lienUrl = document.getElementById("lien-url").value;
       axios
         .post(
           "http://localhost:5000/api/post",
           {
             userId,
+            lienUrl,
             message,
           },
           {
@@ -136,6 +142,7 @@ form label {
   margin-bottom: 10px;
 }
 #newPost-content {
+  font-size: 20px;
   height: 200px;
   width: calc(100% - 20px);
   padding: 10px;

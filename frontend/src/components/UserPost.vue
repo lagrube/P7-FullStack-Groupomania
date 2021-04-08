@@ -7,13 +7,29 @@
           <div class="post-user">{{ user.prenom }} {{ user.nom }}</div>
           <div class="post-date">{{ post.date }}</div>
         </div>
-        <div class="post-image">{{ post.image }}</div>
+        <div class="post-lien">
+          <a :href="post.lien_url">{{ post.lien_url }}</a>
+        </div>
         <div class="post-content">{{ post.message }}</div>
-        <router-link :to="{ name: 'Post', params: { id: post.id } }">
-          <div class="modify-btn" v-if="user.userId === post.user_id">
-            Modifier
-          </div>
-        </router-link>
+        <div class="lien-modif">
+          <router-link
+            class="text-decoration"
+            :to="{ name: 'Comments', params: { id: post.id } }"
+          >
+            <div class="comments">
+              Commentaires
+            </div>
+          </router-link>
+
+          <router-link :to="{ name: 'Post', params: { id: post.id } }">
+            <div
+              class="modify-btn"
+              v-if="user.userId === post.user_id || user.admin == 1"
+            >
+              Modifier
+            </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -87,6 +103,19 @@ export default {
   .is-visible {
     display: block;
   }
+  .lien-modif {
+    display: flex;
+    justify-content: space-around;
+  }
+  .comments {
+    color: #381f1f7a;
+    &:hover {
+      color: #130c0c;
+    }
+  }
+  .text-decoration {
+    text-decoration: none;
+  }
   .post {
     width: 60%;
     margin: auto;
@@ -98,14 +127,15 @@ export default {
     .post-date {
       font-size: 12px;
     }
-    .post-image {
+    .post-lien {
+      border-top: 1px solid red;
+      padding-top: 20px;
       text-align: center;
+      margin-bottom: 10px;
     }
     .post-content {
       margin-bottom: 30px;
-      border-top: 1px solid red;
       text-align: center;
-      padding-top: 40px;
     }
     .modify-btn {
       cursor: pointer;

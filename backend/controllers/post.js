@@ -7,6 +7,7 @@ exports.createPost = (req, res, next) => {
   const userId = `${req.body.userId}`;
   const message = `${req.body.message}`;
   const lienUrl = `${req.body.lienUrl}`;
+
   const sqlPost =
     "INSERT INTO posts (user_id, date, message, lien_url) VALUE (?,NOW(),?,?)";
   const values = [userId, message, lienUrl];
@@ -23,7 +24,7 @@ exports.createPost = (req, res, next) => {
 // MIDDLEWARE GET ALL POSTS pour obtenir tous les messages
 exports.getAllPosts = (req, res, next) => {
   mysql.query(
-    "SELECT users.nom, users.prenom, posts.id, posts.user_id, posts.message, posts.date AS date FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY date DESC",
+    `SELECT users.nom, users.prenom, posts.id, posts.user_id, posts.message, posts.lien_url, DATE_FORMAT(posts.date, "le %e %M %Y à %kh%i") AS date FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY date DESC`,
     (err, result, field) => {
       err
         ? res.status(400).json({ err })
@@ -77,7 +78,7 @@ exports.deletePost = (req, res, next) => {
 // MIDDLEWARE GET ALL USER POSTS pour récupérer tout les post d'un seul utilisateur
 exports.getUserPosts = (req, res, next) => {
   mysql.query(
-    `SELECT * FROM posts WHERE posts.user_id = ${req.params.id}`,
+    `SELECT posts.id, posts.user_id, posts.message, posts.lien_url, DATE_FORMAT(posts.date, "le %e %M %Y à %kh%i") AS date FROM posts WHERE posts.user_id = ${req.params.id} ORDER BY date DESC`,
     (err, result, field) => {
       err
         ? res.status(400).json({ err })
@@ -94,10 +95,9 @@ exports.createComment = (req, res, next) => {
   const postId = `${req.params.id}`;
   const userId = `${req.body.userId}`;
   const message = `${req.body.message}`;
-  const lienUrl = `${req.body.lienUrl}`;
   const sqlPost =
-    "INSERT INTO commentaires (post_id, user_id, date, message, lien_url) VALUE (?,?,NOW(),?,?)";
-  const values = [postId, userId, message, lienUrl];
+    "INSERT INTO commentaires (post_id, user_id, date, message) VALUE (?,?,NOW(),?)";
+  const values = [postId, userId, message];
 
   mysql.query(sqlPost, values, (err, result, field) => {
     err
@@ -111,7 +111,7 @@ exports.createComment = (req, res, next) => {
 // MIDDLEWARE GET ALL COMMENT
 exports.getAllComments = (req, res, next) => {
   mysql.query(
-    "SELECT commentaires.post_id, commentaires.user_id, users.prenom, users.nom, commentaires.message, commentaires.date AS date FROM users INNER JOIN commentaires ON users.id = commentaires.user_id ORDER BY date DESC",
+    `SELECT commentaires.id, commentaires.post_id, commentaires.user_id, users.prenom, users.nom, commentaires.message, DATE_FORMAT(commentaires.date, "le %e %M %Y à %kh%i") AS date FROM users INNER JOIN commentaires ON users.id = commentaires.user_id WHERE commentaires.post_id = ${req.params.id} ORDER BY date DESC`,
     (error, result, field) => {
       if (error) {
         return res.status(400).json({ error });
@@ -134,8 +134,3 @@ exports.deleteComment = (req, res, next) => {
     },
   );
 };
-
-// // MIDDLEWARE LIKE pour ajouter un like
-// exports.like = (req, res, next) => {
-//   mysql.query("INSERT INTO likes () ");
-// };
