@@ -58,10 +58,12 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 
 export default {
   name: "SignupForm",
+
   data() {
     return {
       message: "",
@@ -69,7 +71,9 @@ export default {
       url: "conditions générales",
     };
   },
+
   methods: {
+    // Fonction pour s"inscrire
     handleSignup() {
       const email = document.getElementById("email").value;
       const prenom = document.getElementById("firstName").value;
@@ -86,6 +90,7 @@ export default {
       this.message = "";
       this.messageForm = "";
 
+      // Vérification si les mots de passes sont identiques et si les conditions générales sont coché
       if (password !== controlPassword || !terms.checked) {
         if (password !== controlPassword) {
           passwordError.innerHTML = "Les mots de passe ne sont pas identique!";

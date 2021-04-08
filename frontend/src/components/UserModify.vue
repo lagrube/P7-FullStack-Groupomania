@@ -60,6 +60,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 
 export default {
@@ -72,12 +73,14 @@ export default {
     };
   },
 
+  // Chargement des fonctions avant le chargement de la page
   mounted() {
     this.getOneUser();
     this.refreshPage();
   },
 
   methods: {
+    // Fonction pour récupérer les données de l'utilisateur
     getOneUser() {
       const token = JSON.parse(localStorage.user).token;
       const userId = this.$route.params.id;
@@ -95,6 +98,7 @@ export default {
         });
     },
 
+    // FONCTION pour retourner sur la page profil apres un F5
     refreshPage() {
       const userId = this.$route.params.id;
       if (userId === undefined) {
@@ -104,6 +108,7 @@ export default {
       }
     },
 
+    // FONCTION pour modifier son profil utilisateur
     modifyProfil() {
       const token = JSON.parse(localStorage.user).token;
       const userId = this.$route.params.id;
@@ -116,6 +121,7 @@ export default {
       const passwordError = document.querySelector(".password-confirm");
       passwordError.innerHTML = "";
 
+      // Vérification des mots de passes identiques
       if (password !== undefined || password === controlPassword) {
         if (password !== controlPassword) {
           passwordError.innerHTML = "Les mots de passe ne sont pas identique!";
@@ -138,11 +144,9 @@ export default {
             )
             .then(() => {
               console.log("Utilisateur modifié!");
-              console.log(password);
               window.location = "/profil";
             })
             .catch((err) => {
-              console.log("erreur");
               console.log(err);
             });
         }
@@ -191,6 +195,7 @@ export default {
     text-align: unset;
     font-family: inherit;
     font-size: 16px;
+    resize: none;
     &:focus {
       outline: none;
     }

@@ -3,7 +3,7 @@
     <div class="post" v-for="post in posts" :key="post.id">
       <div class="container-header">
         <div class="post-user">{{ post.prenom }} {{ post.nom }}</div>
-        <div class="post-date">{{ post.date }}</div>
+        <div class="post-date">le {{ dateFormat(post.date) }}</div>
       </div>
 
       <div class="post-lien">
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 import { mapState } from "vuex";
 
@@ -52,12 +53,14 @@ export default {
     ...mapState(["url"]),
   },
 
+  // Chargement des fonctions avant le chargement de la page
   created() {
     this.user = JSON.parse(localStorage.user);
     this.getAllPost();
   },
 
   methods: {
+    // Fonction pour récupérer tout les posts
     getAllPost() {
       const token = JSON.parse(localStorage.user).token;
       axios
@@ -71,6 +74,18 @@ export default {
           this.posts = res.data.result;
           console.log(this.posts);
         });
+    },
+    // Fonction pour mettre en format FR la date
+    dateFormat(date) {
+      const event = new Date(date);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      return event.toLocaleDateString("fr-FR", options);
     },
   },
 };

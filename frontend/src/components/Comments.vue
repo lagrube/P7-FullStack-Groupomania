@@ -25,7 +25,7 @@
       <div class="container-header">
         <div class="comment-header">
           <div class="comment-user">{{ comment.prenom }} {{ comment.nom }}</div>
-          <div class="comment-date">{{ comment.date }}</div>
+          <div class="comment-date">le {{ dateFormat(comment.date) }}</div>
         </div>
         <div
           class="delete-btn"
@@ -33,7 +33,7 @@
           @click="deleteComment(comment.id)"
           :key="comment.id"
         >
-          X
+          Supprimer
         </div>
       </div>
 
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 
 export default {
@@ -54,13 +55,14 @@ export default {
       visible: false,
     };
   },
-
+  // Chargement des fonctions avant le chargement de la page
   created() {
     this.getComments();
     this.user = JSON.parse(localStorage.user);
   },
 
   methods: {
+    // Fonction pour récupère tout les commentaires
     getComments() {
       const postId = this.$route.params.id;
       const token = JSON.parse(localStorage.user).token;
@@ -79,6 +81,7 @@ export default {
         });
     },
 
+    // Fonction pour créer un commentaire
     sendNewComment() {
       const postId = this.$route.params.id;
       const token = JSON.parse(localStorage.user).token;
@@ -105,6 +108,7 @@ export default {
         });
     },
 
+    // Fonction pour supprimer un commentaire
     deleteComment(commentId) {
       const token = JSON.parse(localStorage.user).token;
       axios
@@ -118,6 +122,19 @@ export default {
           this.getComments();
           console.log("Commentaire supprimé !");
         });
+    },
+
+    // Fonction de mise en forme FR de la date
+    dateFormat(date) {
+      const event = new Date(date);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      return event.toLocaleDateString("fr-FR", options);
     },
   },
 };

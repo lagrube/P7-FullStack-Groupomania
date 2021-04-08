@@ -30,6 +30,7 @@
 export default {
   name: "Navbar",
   methods: {
+    // Fonction qui déconnecter l'utilisateur tout en supprimant le localstorage et l'empeche donc de revenir sur le menu sans se connecter
     disconnect() {
       localStorage.removeItem("user");
       location.href = "/";

@@ -25,6 +25,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 
 export default {
@@ -37,6 +38,7 @@ export default {
   },
 
   methods: {
+    // Fonction pour créer un post
     sendNewPost() {
       const token = JSON.parse(localStorage.user).token;
       //   const user = JSON.parse(localStorage.user);

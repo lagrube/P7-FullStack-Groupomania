@@ -31,7 +31,9 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
+
 export default {
   name: "OnePost",
 
@@ -42,12 +44,14 @@ export default {
     };
   },
 
+  // Chargement des fonctions avant le chargement de la page
   mounted() {
     this.getOnePost();
     this.refreshPage();
   },
 
   methods: {
+    // Fonction pour récupérer un seul post
     getOnePost() {
       const token = JSON.parse(localStorage.user).token;
       const postId = this.$route.params.id;
@@ -65,7 +69,7 @@ export default {
           console.log(this.post.message);
         });
     },
-
+    // Fonction pour revenir sur la page HOME apres un F5
     refreshPage() {
       const userId = this.$route.params.id;
       if (userId === undefined) {
@@ -74,11 +78,11 @@ export default {
         return;
       }
     },
-
+    // Fonction annuler qui permet de retourner sur la page HOME
     Cancel() {
       location.href = "/";
     },
-
+    // Fonction pour modifier un post
     modifyPost() {
       const token = JSON.parse(localStorage.user).token;
       const postId = this.$route.params.id;
@@ -106,7 +110,7 @@ export default {
           console.log("marche pas");
         });
     },
-
+    // Fonction pour supprimer un post
     deletePost() {
       const token = JSON.parse(localStorage.user).token;
       const postId = this.$route.params.id;

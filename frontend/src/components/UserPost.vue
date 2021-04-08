@@ -5,7 +5,7 @@
       <div class="post" v-for="post in posts" :key="post.id">
         <div class="post-header">
           <div class="post-user">{{ user.prenom }} {{ user.nom }}</div>
-          <div class="post-date">{{ post.date }}</div>
+          <div class="post-date">le {{ dateFormat(post.date) }}</div>
         </div>
         <div class="post-lien">
           <a :href="post.lien_url">{{ post.lien_url }}</a>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 
 export default {
@@ -47,12 +48,14 @@ export default {
     };
   },
 
+  // Chargement des fonctions avant le chargement de la page
   created() {
     this.user = JSON.parse(localStorage.user);
     this.getUserPosts();
   },
 
   methods: {
+    // Fonction pour récupérer les post d'un seul utilisateur
     getUserPosts() {
       const userId = JSON.parse(localStorage.user).userId;
       const token = JSON.parse(localStorage.user).token;
@@ -68,10 +71,22 @@ export default {
           this.posts = res.data.result;
         });
     },
-
+    // Fonction pour montrer les posts utilisateur
     showPosts() {
       const visible = document.querySelector(".post-btn");
       visible.classList.toggle("is-visible");
+    },
+    // Fonction pour mettre en format FR la date
+    dateFormat(date) {
+      const event = new Date(date);
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      return event.toLocaleDateString("fr-FR", options);
     },
   },
 };

@@ -23,6 +23,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 
 export default {
@@ -34,12 +35,14 @@ export default {
     };
   },
 
+  // Chargement des fonctions avant le chargement de la page
   created() {
     this.user = JSON.parse(localStorage.user);
     this.getUserProfil();
   },
 
   methods: {
+    // Fonction pour récupérer le profil utilisateur
     getUserProfil() {
       const userId = JSON.parse(localStorage.user).userId;
       const token = JSON.parse(localStorage.user).token;
@@ -57,7 +60,7 @@ export default {
           console.log(this.users);
         });
     },
-
+    // Fonction pour supprimer l'utilisateur
     deleteUser() {
       const userId = JSON.parse(localStorage.user).userId;
       const token = JSON.parse(localStorage.user).token;

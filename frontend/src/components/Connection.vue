@@ -24,6 +24,7 @@
 </template>
 
 <script>
+// Importation de axios : requête serveur
 import axios from "axios";
 import { mapState } from "vuex";
 
@@ -41,10 +42,12 @@ export default {
   },
 
   methods: {
+    // Fonction pour lancer la demande de connexion
     handleLogin() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       let token = "";
+      // Oblige l'utilisateur a rentrer des données
       if (email == "" || password == "") {
         alert(
           "Veuillez entrer votre email et votre mot de passe pour vous connecter",
