@@ -96,6 +96,9 @@ export default {
 .UserPost {
   width: 80%;
   margin: auto;
+  @media all and (max-width: 700px) {
+    width: 100%;
+  }
   h3 {
     width: 50%;
     margin: 40px auto;
@@ -110,6 +113,9 @@ export default {
     &:hover {
       transition: all 0.3s ease;
       transform: scale(1.05);
+    }
+    @media all and (max-width: 800px) {
+      width: 90%;
     }
   }
   .post-btn {
@@ -136,6 +142,9 @@ export default {
     margin: auto;
     // border: 1px solid;
     overflow: hidden;
+    @media all and (max-width: 800px) {
+      width: 100%;
+    }
     .post-user {
       margin-bottom: 5px;
     }

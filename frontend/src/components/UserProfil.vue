@@ -88,6 +88,10 @@ export default {
   margin: auto;
   display: flex;
   justify-content: space-around;
+  @media all and (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+  }
   .blocLeft {
     flex: 1.5;
     text-align: center;
@@ -97,6 +101,7 @@ export default {
     }
     img {
       width: 20%;
+      min-width: 80px;
     }
     .bio {
       padding: 15px 0;
@@ -106,7 +111,7 @@ export default {
     }
   }
   .blocRight {
-    flex: 1;
+    flex: 1.5;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,6 +125,9 @@ export default {
       padding: 10px;
       border-radius: 10px;
       margin: 30px;
+      @media all and (max-width: 600px) {
+        margin: 10px;
+      }
       &:hover {
         transform: scale(1.1);
         transition: all 0.2s;

@@ -5,8 +5,6 @@
     </header>
     <main>
       <Connection v-if="!connected" />
-
-      <h2 class="center">Modification de votre post:</h2>
       <OnePost v-if="connected" />
     </main>
   </div>

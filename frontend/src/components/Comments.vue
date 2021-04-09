@@ -171,6 +171,15 @@ export default {
   background-color: rgba(31, 30, 30, 0.678);
   z-index: 1;
 }
+.form-close {
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: 18px;
+  margin-right: 15px;
+  &:hover {
+    color: red;
+  }
+}
 .form-wrapper {
   box-sizing: border-box;
   background-color: white;
@@ -180,15 +189,6 @@ export default {
   width: 800px;
   height: 80%;
   border-radius: 30px;
-}
-.form-close {
-  cursor: pointer;
-  align-self: flex-end;
-  font-size: 18px;
-  margin-right: 15px;
-  &:hover {
-    color: red;
-  }
 }
 .newComment-form {
   display: flex;
@@ -253,7 +253,9 @@ textarea {
   }
   h3 {
     width: 50%;
-    margin: 80px auto;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
     text-align: center;
     cursor: pointer;
     right: 5%;
@@ -262,6 +264,9 @@ textarea {
     border-radius: 10px;
     padding: 3px 10px;
     transition: all 0.3s ease;
+    @media all and (max-width: 600px) {
+      margin-top: 20px;
+    }
     &:hover {
       transition: all 0.3s ease;
       transform: scale(1.05);
@@ -270,9 +275,22 @@ textarea {
   .container-header {
     display: flex;
     justify-content: space-between;
+    @media all and (max-width: 600px) {
+      display: block;
+      width: 150px;
+    }
   }
   .delete-btn {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    @media all and (max-width: 600px) {
+      display: block;
+      position: relative;
+      top: 50px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
     &:hover {
       color: red;
       cursor: pointer;
@@ -302,6 +320,9 @@ textarea {
       text-align: center;
       padding-top: 20px;
       margin-bottom: 10px;
+      @media all and (max-width: 600px) {
+        padding-top: 0px;
+      }
     }
     .modify-btn {
       cursor: pointer;

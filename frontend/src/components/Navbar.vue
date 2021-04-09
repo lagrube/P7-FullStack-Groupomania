@@ -1,29 +1,27 @@
 <template>
-  <header>
-    <nav id="nav">
-      <router-link class="nav-home" to="/">
+  <nav id="nav">
+    <router-link class="nav-home" to="/">
+      <img
+        class="logo-groupomania"
+        src="@/assets/groupomania-navbar.png"
+        alt="Groupomania logo"
+      />
+      <div class="home">Accueil</div>
+    </router-link>
+    <ul>
+      <li>
+        <router-link to="/profil">Mon compte</router-link>
+      </li>
+      <li>
         <img
-          class="logo-groupomania"
-          src="@/assets/groupomania-navbar.png"
-          alt="Groupomania logo"
+          class="logo"
+          src="@/assets/logout_3.svg"
+          alt="Deconnexion"
+          @click="disconnect()"
         />
-        <div class="home">Accueil</div>
-      </router-link>
-      <ul>
-        <li>
-          <router-link to="/profil">Mon compte</router-link>
-        </li>
-        <li>
-          <img
-            class="logo"
-            src="@/assets/logout_3.svg"
-            alt="Deconnexion"
-            @click="disconnect()"
-          />
-        </li>
-      </ul>
-    </nav>
-  </header>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>

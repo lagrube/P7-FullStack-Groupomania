@@ -1,6 +1,12 @@
 <template>
   <div class="onePost">
     <div class="form-wrapper">
+      <h2 class="center">
+        Modification de votre post:
+        <br />
+        <br />
+        {{ post.message }}
+      </h2>
       <span class="form-close" @click="Cancel()">X</span>
       <form class="newPost-form" @submit.prevent="">
         <label class="titre" for="newPost-content">Contenu</label>
@@ -134,6 +140,10 @@ export default {
 .newPost {
   padding: 20px 20px 0px 20px;
 }
+.center {
+  text-align: center;
+  margin: 30px;
+}
 .form-wrapper {
   margin: auto;
   box-sizing: border-box;
@@ -142,6 +152,9 @@ export default {
   flex-direction: column;
   padding: 5%;
   width: 800px;
+  @media all and (max-width: 800px) {
+    width: 100%;
+  }
   height: 80%;
   border-radius: 30px;
 }
