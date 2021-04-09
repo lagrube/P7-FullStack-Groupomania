@@ -3,9 +3,11 @@
     <div class="blocLeft">
       <div class="nom-user">{{ users.nom }} {{ users.prenom }}</div>
       <img
+        class="basic-img"
         src="https://cours-informatique-gratuit.fr/wp-content/uploads/2014/05/compte-utilisateur-1.png"
         alt="Image utilisateur"
       />
+      <img v-if="users.image" :src="users.image" alt="user image" />
       <div class="bio">
         <span class="bold">Description:</span> <br />
         {{ users.bio }}
@@ -38,6 +40,7 @@ export default {
   // Chargement des fonctions avant le chargement de la page
   created() {
     this.user = JSON.parse(localStorage.user);
+    this.showPhoto();
     this.getUserProfil();
   },
 
@@ -55,8 +58,8 @@ export default {
           },
         })
         .then((res) => {
-          console.log("dans le then");
           this.users = res.data[0];
+          this.showPhoto();
           console.log(this.users);
         });
     },
@@ -78,6 +81,13 @@ export default {
           location.href = "/";
         });
     },
+
+    showPhoto() {
+      if (this.users.image) {
+        const change = document.querySelector(".basic-img");
+        change.classList.toggle("invisible");
+      }
+    },
   },
 };
 </script>
@@ -92,6 +102,9 @@ export default {
     flex-direction: column;
     width: 100%;
   }
+  .invisible {
+    display: none;
+  }
   .blocLeft {
     flex: 1.5;
     text-align: center;
@@ -100,7 +113,9 @@ export default {
       font-size: 18px;
     }
     img {
-      width: 20%;
+      width: 120px;
+      height: 100px;
+      border-radius: 50%;
       min-width: 80px;
     }
     .bio {

@@ -2,12 +2,16 @@
   <div class="posts">
     <div class="post" v-for="post in posts" :key="post.id">
       <div class="container-header">
-        <div class="post-user">{{ post.prenom }} {{ post.nom }}</div>
+        <div class="user-header">
+          <img class="user-image" v-if="post.image" :src="post.image" alt="" />
+          <div class="post-user">{{ post.prenom }} {{ post.nom }}</div>
+        </div>
         <div class="post-date">le {{ dateFormat(post.date) }}</div>
       </div>
 
       <div class="post-lien">
-        <a :href="post.lien_url">{{ post.lien_url }}</a>
+        <img v-if="post.image_url" :src="post.image_url" alt="image" />
+        <a v-if="post.lien_url" :href="post.lien_url">{{ post.lien_url }}</a>
       </div>
       <div class="post-content">{{ post.message }}</div>
 
@@ -97,16 +101,28 @@ export default {
   margin: auto;
   .post {
     width: 95%;
-    margin: 20px 0px 0px;
-    margin: auto;
+    margin: 30px 0px 50px 0px;
     // border: 1px solid;
-    padding: 50px 0;
-    overflow: hidden;
+    border-radius: 50px;
+    padding: 20px;
+    background-color: rgba(255, 0, 0, 0.055);
     .lien-modif {
       display: flex;
       justify-content: space-around;
     }
+    .user-header {
+      display: flex;
+      align-items: center;
+      .user-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+
     .post-user {
+      font-weight: bold;
       margin-bottom: 5px;
     }
     .post-date {
@@ -120,15 +136,20 @@ export default {
       padding-top: 20px;
       margin-bottom: 10px;
       text-align: center;
+      img {
+        width: 350px;
+        height: 200px;
+      }
     }
     .post-content {
       margin-bottom: 30px;
       text-align: center;
     }
     .comments {
-      color: #381f1f7a;
+      color: #381f1fea;
       &:hover {
         color: #130c0c;
+        font-weight: bold;
       }
     }
     .text-decoration {

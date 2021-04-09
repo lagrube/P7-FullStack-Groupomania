@@ -8,6 +8,7 @@
           <div class="post-date">le {{ dateFormat(post.date) }}</div>
         </div>
         <div class="post-lien">
+          <img v-if="post.image_url" :src="post.image_url" alt="image" />
           <a :href="post.lien_url">{{ post.lien_url }}</a>
         </div>
         <div class="post-content">{{ post.message }}</div>
@@ -32,6 +33,7 @@
         </div>
       </div>
     </div>
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -127,6 +129,7 @@ export default {
   .lien-modif {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 40px;
   }
   .comments {
     color: #381f1f7a;
@@ -156,6 +159,10 @@ export default {
       padding-top: 20px;
       text-align: center;
       margin-bottom: 10px;
+      img {
+        width: 250px;
+        height: 100px;
+      }
     }
     .post-content {
       margin-bottom: 30px;
@@ -172,5 +179,8 @@ export default {
       padding: 3px 10px;
     }
   }
+}
+.footer {
+  padding: 100px;
 }
 </style>

@@ -9,6 +9,8 @@
           <h2 class="center">Créez votre post ici :</h2>
           <span class="form-close" @click="visible = false">X</span>
           <form class="newPost-form" @submit.prevent="sendNewPost()">
+            <label for="image-url">Image URL</label>
+            <input type="text" id="image-url" />
             <label for="lien-url">Lien URL</label>
             <input type="text" id="lien-url" />
             <label for="newPost-content">Contenu</label>
@@ -45,6 +47,7 @@ export default {
       const userId = JSON.parse(localStorage.user).userId;
       const message = document.getElementById("newPost-content").value;
       const lienUrl = document.getElementById("lien-url").value;
+      const imageUrl = document.getElementById("image-url").value;
       axios
         .post(
           "http://localhost:5000/api/post",
@@ -52,6 +55,7 @@ export default {
             userId,
             lienUrl,
             message,
+            imageUrl,
           },
           {
             headers: {
@@ -149,7 +153,7 @@ form label {
   width: calc(100% - 20px);
   padding: 10px;
   resize: none;
-  overflow-y: scroll;
+  overflow: auto;
 }
 .newPost-btn {
   margin-top: 20px;

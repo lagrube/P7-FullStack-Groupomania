@@ -215,14 +215,14 @@ textarea {
   width: calc(100% - 20px);
   padding: 10px;
   resize: none;
-  overflow-y: scroll;
+  overflow: auto;
 }
 #newPost-content {
   height: 200px;
   width: calc(100% - 20px);
   padding: 10px;
   resize: none;
-  overflow-y: scroll;
+  overflow: auto;
 }
 .newComment-btn {
   margin-top: 20px;
@@ -308,9 +308,14 @@ textarea {
     margin-bottom: 40px;
     padding: 0px 0px 30px 10px;
     border-left: 1px solid red;
+    border-bottom: 1px solid red;
+    border-radius: 40px;
+    padding: 15px;
     overflow: hidden;
+    background-color: rgba(255, 0, 0, 0.021);
     .comment-user {
       margin-bottom: 5px;
+      font-weight: bold;
     }
     .comment-date {
       font-size: 12px;

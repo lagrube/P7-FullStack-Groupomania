@@ -23,15 +23,17 @@
       />
       <br />
 
+      <label class="label-user" for="userImage">Image</label>
+      <input type="text" name="userImage" id="userImage" />
+      <br />
+
       <label class="label-user bio-label" for="bio">Bio</label>
       <textarea
         type="text"
         id="bio"
         class="bio"
-        minlength="5"
         placeholder=""
         v-model="this.users.bio"
-        required
       />
       <br />
 
@@ -116,6 +118,7 @@ export default {
       const prenom = document.getElementById("firstName").value;
       const nom = document.getElementById("lastName").value;
       const password = document.getElementById("password").value;
+      const image = document.getElementById("userImage").value;
       const bio = document.getElementById("bio").value;
       const controlPassword = document.getElementById("control-password").value;
       const passwordError = document.querySelector(".password-confirm");
@@ -134,6 +137,7 @@ export default {
                 prenom,
                 nom,
                 bio,
+                image,
               },
               {
                 headers: {

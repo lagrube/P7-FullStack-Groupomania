@@ -123,6 +123,7 @@ exports.modify = (req, res, next) => {
   const nom = req.body.nom;
   const bio = req.body.bio;
   const newPassword = req.body.newPassword;
+  const image = req.body.image;
   let values;
 
   if (req.file) {
@@ -196,9 +197,9 @@ exports.modify = (req, res, next) => {
     } else if (prenom || nom) {
       console.log("prenom ou nom présent");
       // Si le mdp reste le même
-      values = [prenom, nom, bio];
+      values = [prenom, nom, bio, image];
       mysql.query(
-        `UPDATE users SET prenom=?, nom=?, bio=? WHERE id = ${req.params.id}`,
+        `UPDATE users SET prenom=?, nom=?, bio=?, image=? WHERE id = ${req.params.id}`,
         values,
         function (err, result) {
           if (err) {

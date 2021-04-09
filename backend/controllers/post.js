@@ -7,10 +7,11 @@ exports.createPost = (req, res, next) => {
   const userId = `${req.body.userId}`;
   const message = `${req.body.message}`;
   const lienUrl = `${req.body.lienUrl}`;
+  const imageUrl = `${req.body.imageUrl}`;
 
   const sqlPost =
-    "INSERT INTO posts (user_id, date, message, lien_url) VALUE (?,NOW(),?,?)";
-  const values = [userId, message, lienUrl];
+    "INSERT INTO posts (user_id, date, message, lien_url, image_url) VALUE (?,NOW(),?,?,?)";
+  const values = [userId, message, lienUrl, imageUrl];
 
   mysql.query(sqlPost, values, (err, result, field) => {
     err
@@ -24,7 +25,7 @@ exports.createPost = (req, res, next) => {
 // MIDDLEWARE GET ALL POSTS pour obtenir tous les messages
 exports.getAllPosts = (req, res, next) => {
   mysql.query(
-    `SELECT users.nom, users.prenom, posts.id, posts.user_id, posts.message, posts.lien_url, posts.date AS date FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY date DESC`,
+    `SELECT users.nom, users.prenom, users.image, posts.id, posts.user_id, posts.message, posts.lien_url, posts.image_url, posts.date AS date FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY date DESC`,
     (err, result, field) => {
       err
         ? res.status(400).json({ err })
@@ -54,7 +55,7 @@ exports.getOnePost = (req, res, next) => {
 // MIDDLEWARE PUT ONE POST pour modifier un message
 exports.modifyOnePost = (req, res, next) => {
   mysql.query(
-    `UPDATE posts SET message = '${req.body.message}', lien_url= ${req.body.lien_url} WHERE posts.id = ${req.params.id}`,
+    `UPDATE posts SET message = '${req.body.message}' WHERE posts.id = ${req.params.id}`,
     (err, result, field) => {
       err ? res.status(400).json({ err }) : res.status(200).json(result);
     },
@@ -78,7 +79,7 @@ exports.deletePost = (req, res, next) => {
 // MIDDLEWARE GET ALL USER POSTS pour récupérer tout les post d'un seul utilisateur
 exports.getUserPosts = (req, res, next) => {
   mysql.query(
-    `SELECT posts.id, posts.user_id, posts.message, posts.lien_url, posts.date AS date FROM posts WHERE posts.user_id = ${req.params.id} ORDER BY date DESC`,
+    `SELECT posts.id, posts.user_id, posts.message, posts.lien_url, posts.image_url, posts.date AS date FROM posts WHERE posts.user_id = ${req.params.id} ORDER BY date DESC`,
     (err, result, field) => {
       err
         ? res.status(400).json({ err })
@@ -111,7 +112,7 @@ exports.createComment = (req, res, next) => {
 // MIDDLEWARE GET ALL COMMENT
 exports.getAllComments = (req, res, next) => {
   mysql.query(
-    `SELECT commentaires.id, commentaires.post_id, commentaires.user_id, users.prenom, users.nom, commentaires.message, commentaires.date AS date FROM users INNER JOIN commentaires ON users.id = commentaires.user_id WHERE commentaires.post_id = ${req.params.id} ORDER BY date DESC`,
+    `SELECT commentaires.id, commentaires.post_id, commentaires.user_id, users.prenom, users.nom, commentaires.message, commentaires.date AS date FROM users INNER JOIN commentaires ON users.id = commentaires.user_id WHERE commentaires.post_id = ${req.params.id}`,
     (error, result, field) => {
       if (error) {
         return res.status(400).json({ error });
