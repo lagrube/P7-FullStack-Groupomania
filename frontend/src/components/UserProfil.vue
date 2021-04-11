@@ -85,7 +85,7 @@ export default {
     showPhoto() {
       if (this.users.image) {
         const change = document.querySelector(".basic-img");
-        change.classList.toggle("invisible");
+        change.classList.add("invisible");
       }
     },
   },
