@@ -139,6 +139,10 @@ export default {
       img {
         width: 350px;
         height: 200px;
+        @media all and (max-width: 600px) {
+          width: 200px;
+          height: 150px;
+        }
       }
     }
     .post-content {
