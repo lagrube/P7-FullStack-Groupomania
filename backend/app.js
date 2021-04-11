@@ -36,11 +36,12 @@ app.use(helmet()); // Protège l'app en paramétrant des Headers (notamment cont
 // SANITIZER
 app.use(expressSanitizer()); // Protège contre les failles XSS
 
-// ROUTES
-app.use("/images", express.static(path.join(__dirname, "images")));
 // Va servir les routes dédiées aux utilisateurs
 app.use("/api/user", userRoutes);
 // Va servir les routes dédiées aux messages
 app.use("/api/post", postRoutes);
+
+// // ROUTES
+// app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
