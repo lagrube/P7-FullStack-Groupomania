@@ -108,10 +108,26 @@ exports.profil = (req, res, next) => {
 // MIDDLEWARE DELETE
 exports.delete = (req, res, next) => {
   mysql.query(
-    `DELETE FROM users WHERE id = ${req.params.id}`,
+    `DELETE FROM commentaires WHERE commentaires.user_id = ${req.params.id}`,
     (err, result, field) => {
       err
-        ? res.status(400).json({ error })
+        ? res.status(500).json({ error })
+        : res.status(200).json({ message: "Utilisateur supprimé!" });
+    },
+  );
+  mysql.query(
+    `DELETE FROM posts WHERE posts.user_id = ${req.params.id}`,
+    (err, result, field) => {
+      err
+        ? res.status(500).json({ error })
+        : res.status(200).json({ message: "Utilisateur supprimé!" });
+    },
+  );
+  mysql.query(
+    `DELETE FROM users WHERE users.id = ${req.params.id}`,
+    (err, result, field) => {
+      err
+        ? res.status(500).json({ error })
         : res.status(200).json({ message: "Utilisateur supprimé!" });
     },
   );

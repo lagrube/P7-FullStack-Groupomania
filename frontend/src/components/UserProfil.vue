@@ -79,7 +79,8 @@ export default {
           localStorage.removeItem("user");
           console.log("Utilisateur supprimé!");
           location.href = "/";
-        });
+        })
+        .catch(() => console.log("err"));
     },
 
     showPhoto() {
