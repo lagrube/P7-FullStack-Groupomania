@@ -9,7 +9,7 @@
         </div>
         <div class="post-lien">
           <img v-if="post.image_url" :src="post.image_url" alt="image" />
-          <a :href="post.lien_url">{{ post.lien_url }}</a>
+          <a v-if="post.lien_url" :href="post.lien_url">{{ post.lien_url }}</a>
         </div>
         <div class="post-content">{{ post.message }}</div>
         <div class="lien-modif">
