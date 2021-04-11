@@ -194,7 +194,7 @@ exports.modify = (req, res, next) => {
           );
         })
         .catch((err) => res.status(500).json({ err }));
-    } else if (prenom || nom) {
+    } else if (prenom || nom || bio) {
       console.log("prenom ou nom présent");
       // Si le mdp reste le même
       values = [prenom, nom, bio, image];
