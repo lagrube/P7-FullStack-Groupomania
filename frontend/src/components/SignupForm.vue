@@ -21,10 +21,12 @@
       <div class="email error">{{ message }}</div>
 
       <label class="label" for="firstName">Prénom</label>
-      <input type="text" id="firstName" minlength="3" required /> <br />
+      <input type="text" id="firstName" pattern="[A-Za-z]{3,32}" required />
+      <br />
 
       <label class="label" for="lastName">Nom</label>
-      <input type="text" id="lastName" minlength="5" required /> <br />
+      <input type="text" id="lastName" pattern="[A-Za-z]{5,32}" required />
+      <br />
 
       <label class="label" for="password">Mot de passe</label>
       <input

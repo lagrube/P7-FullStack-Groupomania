@@ -14,6 +14,7 @@
     "tinymce-vue": "^1.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vue-template-validator": "^1.1.5",
     "vue2-editor": "^2.10.2",
     "vue3-editor": "0.1.0-alpha.3",
     "vuex": "^4.0.0-0"
