@@ -24,7 +24,12 @@
       <br />
 
       <label class="label-user" for="userImage">Image</label>
-      <input type="text" name="userImage" id="userImage" />
+      <input
+        type="text"
+        name="userImage"
+        id="userImage"
+        v-model="this.users.image"
+      />
       <br />
 
       <label class="label-user bio-label" for="bio">Bio</label>
@@ -187,6 +192,10 @@ export default {
     @media all and (max-width: 600px) {
       width: 60%;
     }
+  }
+  .error {
+    color: red;
+    font-weight: bold;
   }
   .bio {
     width: 222px;

@@ -110,17 +110,13 @@ exports.delete = (req, res, next) => {
   mysql.query(
     `DELETE FROM commentaires WHERE commentaires.user_id = ${req.params.id}`,
     (err, result, field) => {
-      err
-        ? res.status(500).json({ error })
-        : res.status(200).json({ message: "Utilisateur supprimé!" });
+      console.log("Commentaires supprimé!");
     },
   );
   mysql.query(
     `DELETE FROM posts WHERE posts.user_id = ${req.params.id}`,
     (err, result, field) => {
-      err
-        ? res.status(500).json({ error })
-        : res.status(200).json({ message: "Utilisateur supprimé!" });
+      console.log("Posts supprimé!");
     },
   );
   mysql.query(

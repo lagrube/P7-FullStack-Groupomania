@@ -65,7 +65,14 @@ exports.modifyOnePost = (req, res, next) => {
 // MIDDLEWARE DELETE POST pour supprimer les messages
 exports.deletePost = (req, res, next) => {
   mysql.query(
-    `DELETE FROM posts WHERE posts.id = ${req.params.id}`,
+    `DELETE FROM commentaires WHERE post_id = ${req.params.id}`,
+    (err, result, field) => {
+      if (result) console.log("Commentaires supprimé!");
+      if (err) console.log("pas supprimé");
+    },
+  );
+  mysql.query(
+    `DELETE FROM posts WHERE id = ${req.params.id}`,
     (err, result, field) => {
       err
         ? res.status(400).json({ err })
