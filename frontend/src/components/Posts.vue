@@ -25,11 +25,11 @@
           </div>
         </router-link>
 
-        <router-link :to="{ name: 'Post', params: { id: post.id } }">
-          <div
-            class="modify-btn"
-            v-if="user.userId === post.user_id || user.admin == 1"
-          >
+        <router-link
+          v-if="user.userId === post.user_id || user.admin == 1"
+          :to="{ name: 'Post', params: { id: post.id } }"
+        >
+          <div class="modify-btn">
             Modifier
           </div>
         </router-link>
