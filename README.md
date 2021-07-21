@@ -53,7 +53,7 @@ L'un des employés du groupe testera un MVP du produit avec une seule des deux f
 - Créez un fichier nommé **`.env`** dans le dossier backend (je lai placé personnellement dans config).
 
 ```bash
-Vous devez créez votre propre base de données Mysql !
+Vous devez créer votre propre base de données Mysql !
 
 Pour mon cas jutilise workbench avec comme Database : groupomania
 suivit des Tables :
